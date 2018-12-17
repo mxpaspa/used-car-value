@@ -14,21 +14,28 @@ app.get('/', (req, res) => {
 
   // calucate depreciation based on age
 
-  if (months => 120) {
-    throw boom.badRequest('months cannot be greater than or equal to 120');
-    // res.render('500');
-  }
+  // if (months => 120) {
+  //   throw boom.badRequest('months cannot be greater than or equal to 120');
+  // }
 
-  if (miles => 150000) {
-    throw boom.badRequest('miles cannot be greater than or equal to 150000 ');
-  }
+  // if (miles => 150000) {
+  //   throw boom.badRequest('miles cannot be greater than or equal to 150000 ');
+  // }
 
-  let ageDepreciation = months ? originalValue - months * 0.005 * originalValue : res.status(404);
+  let ageDepreciation =
+    months < 120
+      ? originalValue - months * 0.005 * originalValue
+      : res.send({
+          message: 'months can not be equal to or greater than 120'
+        });
 
   // caluclate based on miles
-  let milesDepreciation = miles
-    ? ageDepreciation - (miles / 1000) * 0.02 * ageDepreciation
-    : res.status(404);
+  let milesDepreciation =
+    miles < 150000
+      ? ageDepreciation - (miles / 1000) * 0.02 * ageDepreciation
+      : res.send({
+          message: 'miles can not be equal to or greater than 150000'
+        });
 
   // previous owners - if greater than 2 than do this before collisions
   if (owners > 2) {
