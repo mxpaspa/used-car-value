@@ -14,13 +14,13 @@ app.get('/', (req, res) => {
 
   // calucate depreciation based on age
 
-  if (months == 120 || !months > 120) {
+  if (months => 120) {
     throw boom.badRequest('months cannot be greater than or equal to 120');
     // res.render('500');
   }
 
-  if (miles == 150000) {
-    throw boom.badRequest('miles cannot be ');
+  if (miles => 150000) {
+    throw boom.badRequest('miles cannot be greater than or equal to 150000 ');
   }
 
   let ageDepreciation = months ? originalValue - months * 0.005 * originalValue : res.status(404);
