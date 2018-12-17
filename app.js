@@ -31,12 +31,20 @@ app.get('/', (req, res) => {
     let ownersDepreciation = milesDepreciation - 0.25 * milesDepreciation;
 
     let collisionDepreciation =
-      collisions < 5 ? ownersDepreciation - collisions * 0.2 * ownersDepreciation : false;
+      collisions < 5
+        ? ownersDepreciation - collisions * 0.2 * ownersDepreciation
+        : res.send({
+            message: 'collisions cannot be greater than 5'
+          });
 
     res.send(JSON.stringify({ finalValue: collisionDepreciation }));
   } else {
     let collisionDepreciation =
-      collisions < 5 ? milesDepreciation - collisions * 0.2 * milesDepreciation : false;
+      collisions < 5
+        ? milesDepreciation - collisions * 0.2 * milesDepreciation
+        : res.send({
+            message: 'collisions cannot be greater than 5'
+          });
 
     let ownersAppreciation = collisionDepreciation + 0.1 * collisionDepreciation;
 
