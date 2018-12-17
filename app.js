@@ -13,11 +13,12 @@ app.get('/', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
 
   // calucate depreciation based on age
-  let ageDepreciation = months !== 120 ? originalValue - months * 0.005 * originalValue : false;
+  let ageDepreciation =
+    months !== 120 || !months > 120 ? originalValue - months * 0.005 * originalValue : null;
 
   // caluclate based on miles
   let milesDepreciation =
-    miles !== 150000 ? ageDepreciation - (miles / 1000) * 0.02 * ageDepreciation : false;
+    miles !== 150000 ? ageDepreciation - (miles / 1000) * 0.02 * ageDepreciation : null;
 
   // previous owners - if greater than 2 than do this before collisions
   if (owners > 2) {
