@@ -12,16 +12,6 @@ app.get('/', (req, res) => {
   let collisions = req.query.collisions;
   res.setHeader('Content-Type', 'application/json');
 
-  // calucate depreciation based on age
-
-  // if (months => 120) {
-  //   throw boom.badRequest('months cannot be greater than or equal to 120');
-  // }
-
-  // if (miles => 150000) {
-  //   throw boom.badRequest('miles cannot be greater than or equal to 150000 ');
-  // }
-
   let ageDepreciation =
     months < 120
       ? originalValue - months * 0.005 * originalValue
