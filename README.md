@@ -1,7 +1,7 @@
 # used-car
 
 A Node/Express server that calculates the value of a used car based off:
- * originalValue
+ * originalValue: The original purchase price of the car. Must not contain comma seperated numbers
  * months: the age of the car in months, must be whole integers
  * miles: the number of miles on the car. Must not contain comma seperated numbers
  * owners: the number of onwers on the car. Either greater than 2 or 0.
