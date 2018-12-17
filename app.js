@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 5000;
-const boom = require('boom');
+
 app.set('PORT', PORT);
 
 app.get('/', (req, res) => {
@@ -19,7 +19,6 @@ app.get('/', (req, res) => {
           message: 'months can not be equal to or greater than 120'
         });
 
-  // caluclate based on miles
   let milesDepreciation =
     miles < 150000
       ? ageDepreciation - (miles / 1000) * 0.02 * ageDepreciation
