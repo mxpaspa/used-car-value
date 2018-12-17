@@ -10,6 +10,7 @@ app.get('/', (req, res) => {
   let miles = req.query.miles;
   let owners = req.query.owners;
   let collisions = req.query.collisions;
+  res.setHeader('Content-Type', 'application/json');
 
   // calucate depreciation based on age
   let ageDepreciation = months !== 120 ? originalValue - months * 0.005 * originalValue : false;
@@ -25,14 +26,13 @@ app.get('/', (req, res) => {
     let collisionDepreciation =
       collisions < 5 ? ownersDepreciation - collisions * 0.2 * ownersDepreciation : false;
 
-    res.json(collisionDepreciation);
+    res.send(JSON.stringify({ finalValue: collisionDepreciation }));
   } else {
     let collisionDepreciation =
       collisions < 5 ? milesDepreciation - collisions * 0.2 * milesDepreciation : false;
 
     let ownersAppreciation = collisionDepreciation + 0.1 * collisionDepreciation;
 
-    res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ finalValue: ownersAppreciation }));
   }
 });
