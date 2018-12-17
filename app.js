@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 5000;
-
+const boom = require('boom');
 app.set('PORT', PORT);
 
 app.get('/', (req, res) => {
@@ -13,12 +13,22 @@ app.get('/', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
 
   // calucate depreciation based on age
-  let ageDepreciation =
-    months !== 120 || !months > 120 ? originalValue - months * 0.005 * originalValue : null;
+
+  if (months == 120 || !months > 120) {
+    throw boom.badRequest('months cannot be greater than or equal to 120');
+    // res.render('500');
+  }
+
+  if (miles == 150000) {
+    throw boom.badRequest('miles cannot be ');
+  }
+
+  let ageDepreciation = months ? originalValue - months * 0.005 * originalValue : res.status(404);
 
   // caluclate based on miles
-  let milesDepreciation =
-    miles !== 150000 ? ageDepreciation - (miles / 1000) * 0.02 * ageDepreciation : null;
+  let milesDepreciation = miles
+    ? ageDepreciation - (miles / 1000) * 0.02 * ageDepreciation
+    : res.status(404);
 
   // previous owners - if greater than 2 than do this before collisions
   if (owners > 2) {
