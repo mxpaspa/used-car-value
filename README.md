@@ -1,4 +1,4 @@
-# used-car
+# used-car-value
 
 A Node/Express server that calculates the value of a used car based off:
  * originalValue: The original purchase price of the car. Must not contain comma seperated numbers
